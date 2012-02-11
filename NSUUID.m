@@ -17,14 +17,12 @@
         if (uuidStr.length == 32)
         {
             // Need to add hypens because CFUUIDCreateFromString is unnecessarily stupid.
-            info(@"Original: %@", uuidStr);
             uuidStr = [NSString stringWithFormat:@"%@-%@-%@-%@-%@", 
                        [uuidStr substringWithRange:NSMakeRange(0, 8)],
                        [uuidStr substringWithRange:NSMakeRange(8, 4)],
                        [uuidStr substringWithRange:NSMakeRange(12, 4)],
                        [uuidStr substringWithRange:NSMakeRange(16, 4)],
                        [uuidStr substringWithRange:NSMakeRange(20, 12)]];
-            info(@"awesome verision: %@", uuidStr);
         }
         NSAssert(uuidStr.length == 36, @"UUID was an invalid length; must be 36 characters");
         CFUUIDRef u = CFUUIDCreateFromString(NULL, (__bridge CFStringRef) uuidStr);
